@@ -1,0 +1,1 @@
+1. how to import FormsModule when having module base structure(now we importaed on add event module... need to see how to add it globally)

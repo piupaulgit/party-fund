@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>add-event</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Add event form start -->
+  <form [formGroup]="eventForm" (ngSubmit)="addEvent()">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <!-- Title input -->
+      <ion-item>
+        <ion-label position="floating">Title <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" formControlName="eventName"></ion-input>
+      </ion-item>
+      <!-- Description input -->
+      <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea formControlName="eventDescription"></ion-textarea>
+      </ion-item>
+      <!-- Type input -->
+      <ion-item>
+        <ion-label position="floating">Event Type</ion-label>
+        <ion-select placeholder="Select One" formControlName="eventType">
+          <ion-select-option value="f">One time</ion-select-option>
+          <ion-select-option value="m">Weekly</ion-select-option>
+          <ion-select-option value="m">Monthly</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <!-- Amount input -->
+      <ion-item>
+        <ion-label position="floating">Amount</ion-label>
+        <ion-input formControlName="amount"></ion-input>
+      </ion-item>
+      <!-- Start Date input -->
+      <ion-item>
+        <ion-label>Start Date</ion-label>
+        <ion-datetime placeholder="Select Date" formControlName="startDate"></ion-datetime>
+      </ion-item>
+      <!-- Mobile number input -->
+      <ion-item>
+        <ion-label position="floating">Payment Mobile number</ion-label>
+        <ion-input type="number" maxlength="10" formControlName="adminMobileNumber"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin">Create Event</ion-button>
+    </div>
+  </form>
+  <!-- Add event form End -->
+</ion-content>
+<!-- <ion-alert-controller></ion-alert-controller> -->
