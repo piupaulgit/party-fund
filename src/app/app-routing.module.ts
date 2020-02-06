@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'add-event',
     loadChildren: () => import('./add-event/add-event.module').then( m => m.AddEventPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   }
 ];
 
