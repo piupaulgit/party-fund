@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { DatePipe } from "@angular/common";
 import { EventService } from "../service/event.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-add-event",
@@ -15,7 +16,7 @@ export class AddEventPage implements OnInit {
   // form prioperty
   eventForm: any;
 
-  constructor(private datePipe: DatePipe, private eventService: EventService) {
+  constructor(private datePipe: DatePipe, private eventService: EventService, private router: Router) {
     // change date format
     const currentDateFormat = this.datePipe.transform(
       this.currentDate,
@@ -38,6 +39,10 @@ export class AddEventPage implements OnInit {
   // add event
   addEvent() {
     console.log(this.eventForm.value);
-    this.eventService.addEvent(this.eventForm.value);
+    this.eventService.addEvent(this.eventForm.value)
+      .then(res => {
+        console.log(res);
+      })
+	    this.router.navigate(['/dashboard']);
   }
 }
