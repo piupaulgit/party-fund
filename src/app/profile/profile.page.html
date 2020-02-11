@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="profileForm" (ngSubmit)="addProfile()">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <!-- Full name input -->
+      <ion-item>
+        <ion-label position="floating">Full Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" formControlName="fullName"></ion-input>
+      </ion-item>
+      <!-- mobile no. input -->
+      <ion-item>
+        <ion-label position="floating">Mobile No. <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" formControlName="mobile"></ion-input>
+      </ion-item>
+      <!-- UPI input -->
+      <ion-item>
+        <ion-label position="floating">UPI No. <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" formControlName="upi"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin">Add Profile</ion-button>
+    </div>
+  </form>
+</ion-content>
