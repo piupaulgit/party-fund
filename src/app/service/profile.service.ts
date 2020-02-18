@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Profile } from '../interface/profile';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,11 @@ export class ProfileService {
     this.afAuth.authState.subscribe(auth => {
       return this.currentUserId = auth.uid;
     })
+  }
+
+  getProfileDetail(currentUserId):Observable<any>{
+    console.log(currentUserId)
+    return this.db.object(`user/${currentUserId}`).valueChanges()
   }
 
 }
