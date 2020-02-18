@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { SharedService } from '../service/shared.service';
 
 @Component({
   selector: 'app-register',
@@ -13,11 +14,12 @@ export class RegisterPage implements OnInit {
   mobileNumber: number;
   confirmPassword = "";
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) { }
+  constructor(private afAuth: AngularFireAuth, private router: Router, private sharedService: SharedService) { }
 
   ngOnInit() {
   }
 
+  // register
   async register(){
     const {emailAddress, mobileNumber, password, confirmPassword} = this;
     if(password !== confirmPassword){
@@ -25,13 +27,13 @@ export class RegisterPage implements OnInit {
     }
     try{
       const res = await this.afAuth.auth.createUserWithEmailAndPassword(emailAddress, password);
-      console.log(res)
       this.router.navigateByUrl('/login')
     }
     catch(err){
       console.dir(err);
+      this.sharedService.showToaster(err.message, "danger")
     }
-    
   }
+  // ===========================
 
 }
