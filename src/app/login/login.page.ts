@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { SharedService } from '../service/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -10,21 +11,23 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
   emailAddress : string = "";
   password : string = "";
-  constructor( private afAuth : AngularFireAuth, private router: Router) { }
+  constructor( private afAuth : AngularFireAuth, private router: Router, private sharedService: SharedService) { }
 
   ngOnInit() {
   }
   
+  // login
   async login(){
-    console.log(this)
     const {emailAddress , password} = this
     try{
-      const res = await this.afAuth.auth.signInWithEmailAndPassword(emailAddress, password)
-      this.router.navigateByUrl('/home');
+      await this.afAuth.auth.signInWithEmailAndPassword(emailAddress, password)
+      this.router.navigateByUrl('/profile');
     }
     catch(err){
       console.dir(err)
+      this.sharedService.showToaster(err.message, "danger")
     }
   }
+  // ===========================
 
 }
