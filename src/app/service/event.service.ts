@@ -18,21 +18,12 @@ export class EventService {
   }
 
   // Add Event
-  addEvent(event) {
+  addEvent(eventDetail) {
     return new Promise<any>((resolve, reject) => {
-      this.events$
-        .push({
-          eventName: event.eventName,
-          eventDescription: event.eventDescription,
-          eventType: event.eventType,
-          amount: event.amount,
-          startDate: event.startDate,
-          adminMobileNumber: event.adminMobileNumber
-        })
-        .then(
-          res => res,
-          err => reject(err)
-        );
+      this.events$.push(eventDetail).then(
+        res => res,
+        err => reject(err)
+      );
     });
   }
 
@@ -54,5 +45,9 @@ export class EventService {
 
   private errorHandelor(error) {
     console.log(error);
+  }
+
+  public getSingleEvent(id): Observable<any> {
+    return this.db.object("events/" + id).valueChanges();
   }
 }

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>add-event</ion-title>
+    <ion-title>{{isUpdateEvent ? 'Edit Event' : 'Add Event'}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -41,15 +41,6 @@
           placeholder="Select Date"
           formControlName="startDate"
         ></ion-datetime>
-      </ion-item>
-      <!-- Mobile number input -->
-      <ion-item>
-        <ion-label position="floating">Payment Mobile number</ion-label>
-        <ion-input
-          type="number"
-          maxlength="10"
-          formControlName="adminMobileNumber"
-        ></ion-input>
       </ion-item>
     </ion-list>
     <div class="ion-padding">
