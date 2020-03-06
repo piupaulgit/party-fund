@@ -43,11 +43,23 @@ export class EventService {
       );
   }
 
-  private errorHandelor(error) {
-    console.log(error);
-  }
-
+  // Get single item
   public getSingleEvent(id): Observable<any> {
     return this.db.object("events/" + id).valueChanges();
+  }
+
+  // update event
+  public updateEvent(key, data): Promise<void> {
+    // return this.db.object('/events/' + key).update(data)
+    return this.db.list("events").update(key, data);
+  }
+
+  // delete event
+  public deleteEvent(key): Promise<void> {
+    return this.db.object("/events/" + key).remove();
+  }
+
+  private errorHandelor(error) {
+    console.log(error);
   }
 }
